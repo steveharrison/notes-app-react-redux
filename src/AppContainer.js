@@ -1,10 +1,18 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import NotesListView from './NotesListView';
+
+import { newNote } from './actions'
+
 export class AppContainer extends React.Component {
 	render() {
-		console.log('render', this.props);
-		return <h1>Hello</h1>;
+		return (
+			<div>
+				<h1>Notes app</h1>
+				<NotesListView notes={this.props.notes} onNewNote={this.props.newNote} />
+			</div>
+		);
 	}
 }
 
@@ -13,8 +21,9 @@ const WrappedAppContainer = connect(
     return { notes: state };
   },
   function mapDispatchToProps(dispatch) {
-	  return {
-	  };
+  	return {
+  		newNote: () => dispatch(newNote())
+  	};
   }
 )(AppContainer);
 

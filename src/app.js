@@ -9,8 +9,6 @@ import NotesApp from './AppContainer';
 
 const store = createStore(notesReducer);
 
-
-
 render(
 	<Provider store={store}>
 		<NotesApp/>

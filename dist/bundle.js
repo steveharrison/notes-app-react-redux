@@ -60,7 +60,7 @@
 
 	var _notesReducer2 = _interopRequireDefault(_notesReducer);
 
-	var _AppContainer = __webpack_require__(204);
+	var _AppContainer = __webpack_require__(205);
 
 	var _AppContainer2 = _interopRequireDefault(_AppContainer);
 
@@ -23216,7 +23216,7 @@
 
 /***/ },
 /* 203 */
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
@@ -23225,15 +23225,28 @@
 	});
 	exports.default = notesReducer;
 
-	var initialState = {
-		message: 'hello world'
-	};
+	var _actions = __webpack_require__(204);
+
+	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+	var initialState = [];
 
 	function notesReducer() {
 		var state = arguments.length <= 0 || arguments[0] === undefined ? initialState : arguments[0];
 		var action = arguments[1];
 
 		switch (action.type) {
+			case _actions.NEW_NOTE:
+				{
+					return [].concat(_toConsumableArray(state), [{
+						title: 'My note',
+						content: 'Lorem ipsum **dolor** sit amet, consectetur adipisicing elit. Nam excepturi, rerum maiores aliquam voluptatibus. Sunt ullam, in alias, minus omnis quis obcaecati, similique eum quibusdam excepturi quisquam fugit hic, maxime.',
+						starred: false,
+						dateCreated: new Date(),
+						dateUpdated: new Date()
+					}]);
+				}
+
 			default:
 				{
 					return state;
@@ -23243,12 +23256,28 @@
 
 /***/ },
 /* 204 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ function(module, exports) {
 
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 		value: true
+	});
+	exports.newNote = newNote;
+	var NEW_NOTE = exports.NEW_NOTE = '@@NOTES/NEW_NOTE';
+
+	function newNote() {
+		return { type: NEW_NOTE };
+	}
+
+/***/ },
+/* 205 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
 	});
 	exports.AppContainer = undefined;
 
@@ -23260,6 +23289,12 @@
 
 	var _reactRedux = __webpack_require__(189);
 
+	var _NotesListView = __webpack_require__(206);
+
+	var _NotesListView2 = _interopRequireDefault(_NotesListView);
+
+	var _actions = __webpack_require__(204);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -23269,36 +23304,123 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 	var AppContainer = exports.AppContainer = function (_React$Component) {
-		_inherits(AppContainer, _React$Component);
+	  _inherits(AppContainer, _React$Component);
 
-		function AppContainer() {
-			_classCallCheck(this, AppContainer);
+	  function AppContainer() {
+	    _classCallCheck(this, AppContainer);
 
-			return _possibleConstructorReturn(this, Object.getPrototypeOf(AppContainer).apply(this, arguments));
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(AppContainer).apply(this, arguments));
+	  }
+
+	  _createClass(AppContainer, [{
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        null,
+	        _react2.default.createElement(
+	          'h1',
+	          null,
+	          'Notes app'
+	        ),
+	        _react2.default.createElement(_NotesListView2.default, { notes: this.props.notes, onNewNote: this.props.newNote })
+	      );
+	    }
+	  }]);
+
+	  return AppContainer;
+	}(_react2.default.Component);
+
+	var WrappedAppContainer = (0, _reactRedux.connect)(function mapStateToProps(state) {
+	  return { notes: state };
+	}, function mapDispatchToProps(dispatch) {
+	  return {
+	    newNote: function newNote() {
+	      return dispatch((0, _actions.newNote)());
+	    }
+	  };
+	})(AppContainer);
+
+	exports.default = WrappedAppContainer;
+
+/***/ },
+/* 206 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var NotesListView = function (_React$Component) {
+		_inherits(NotesListView, _React$Component);
+
+		function NotesListView() {
+			_classCallCheck(this, NotesListView);
+
+			return _possibleConstructorReturn(this, Object.getPrototypeOf(NotesListView).apply(this, arguments));
 		}
 
-		_createClass(AppContainer, [{
-			key: 'render',
+		_createClass(NotesListView, [{
+			key: "render",
 			value: function render() {
-				console.log('render', this.props);
+				var _props = this.props;
+				var notes = _props.notes;
+				var onNewNote = _props.onNewNote;
+
+
 				return _react2.default.createElement(
-					'h1',
+					"div",
 					null,
-					'Hello'
+					_react2.default.createElement(
+						"button",
+						{ onClick: onNewNote },
+						"New note"
+					),
+					_react2.default.createElement(
+						"ul",
+						{ className: "notes-list-view" },
+						notes.map(function (note, index) {
+							return _react2.default.createElement(
+								"li",
+								{ className: "notes-list-item", key: index },
+								_react2.default.createElement(
+									"h3",
+									null,
+									note.title
+								),
+								_react2.default.createElement(
+									"small",
+									null,
+									note.content
+								),
+								" "
+							);
+						})
+					)
 				);
 			}
 		}]);
 
-		return AppContainer;
+		return NotesListView;
 	}(_react2.default.Component);
 
-	var WrappedAppContainer = (0, _reactRedux.connect)(function mapStateToProps(state) {
-		return { notes: state };
-	}, function mapDispatchToProps(dispatch) {
-		return {};
-	})(AppContainer);
-
-	exports.default = WrappedAppContainer;
+	exports.default = NotesListView;
 
 /***/ }
 /******/ ]);
