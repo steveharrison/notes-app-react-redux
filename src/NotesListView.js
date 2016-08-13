@@ -6,7 +6,6 @@ export default class NotesListView extends React.Component {
 
 		return (
 			<div>
-				<button onClick={onNewNote}>New note</button>
 				<ul className="notes-list-view">
 					{notes.map(function(note, index) {
 						return (

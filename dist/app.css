@@ -1,12 +1,41 @@
 
 body {
 	font-family: Courier;
+	margin: 0;
+	padding: 0;
+}
+
+ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.main-container {
+	padding-top: 50px;
 }
 
 .notes-list-view {
-
+	width: 40%;
+	height: calc(100vh - 50px);
+	border-right: 1px solid grey;
+	overflow-y: scroll;
 }
 
 .notes-list-item {
-	
+	border-bottom: 1px solid grey;
+	padding: 20px;
+}
+
+.notes-list-item h3 {
+	margin-top: 0;
+}
+
+.top-bar {
+    width: 100%;
+    padding: 5px;
+    height: 50px;
+    background: #b1b1b1;
+    position: fixed;
+    top: 0;
 }

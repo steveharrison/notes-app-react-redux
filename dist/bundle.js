@@ -23293,6 +23293,10 @@
 
 	var _NotesListView2 = _interopRequireDefault(_NotesListView);
 
+	var _NotesTopBar = __webpack_require__(207);
+
+	var _NotesTopBar2 = _interopRequireDefault(_NotesTopBar);
+
 	var _actions = __webpack_require__(204);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -23317,13 +23321,9 @@
 	    value: function render() {
 	      return _react2.default.createElement(
 	        'div',
-	        null,
-	        _react2.default.createElement(
-	          'h1',
-	          null,
-	          'Notes app'
-	        ),
-	        _react2.default.createElement(_NotesListView2.default, { notes: this.props.notes, onNewNote: this.props.newNote })
+	        { className: 'main-container' },
+	        _react2.default.createElement(_NotesTopBar2.default, { onNewNote: this.props.newNote }),
+	        _react2.default.createElement(_NotesListView2.default, { notes: this.props.notes })
 	      );
 	    }
 	  }]);
@@ -23388,11 +23388,6 @@
 					"div",
 					null,
 					_react2.default.createElement(
-						"button",
-						{ onClick: onNewNote },
-						"New note"
-					),
-					_react2.default.createElement(
 						"ul",
 						{ className: "notes-list-view" },
 						notes.map(function (note, index) {
@@ -23421,6 +23416,70 @@
 	}(_react2.default.Component);
 
 	exports.default = NotesListView;
+
+/***/ },
+/* 207 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var NotesTopBar = function (_React$Component) {
+		_inherits(NotesTopBar, _React$Component);
+
+		function NotesTopBar() {
+			_classCallCheck(this, NotesTopBar);
+
+			return _possibleConstructorReturn(this, Object.getPrototypeOf(NotesTopBar).apply(this, arguments));
+		}
+
+		_createClass(NotesTopBar, [{
+			key: "render",
+			value: function render() {
+				var onNewNote = this.props.onNewNote;
+
+
+				return _react2.default.createElement(
+					"nav",
+					{ className: "top-bar" },
+					_react2.default.createElement(
+						"ul",
+						null,
+						_react2.default.createElement(
+							"li",
+							null,
+							_react2.default.createElement(
+								"button",
+								{ onClick: onNewNote },
+								"New note"
+							)
+						)
+					)
+				);
+			}
+		}]);
+
+		return NotesTopBar;
+	}(_react2.default.Component);
+
+	exports.default = NotesTopBar;
 
 /***/ }
 /******/ ]);
