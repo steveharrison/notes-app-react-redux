@@ -12,7 +12,8 @@ export class AppContainer extends React.Component {
 		const { appState, ...props } = this.props;
 		
 		const notes = appState.notes;
-		const selectedNote = notes[appState.selectedNoteIndex];
+		const selectedNoteIndex = appState.selectedNoteIndex;
+		const selectedNote = notes[selectedNoteIndex];
 
 		console.log('appState is ', appState);
 		console.log('selectedNote is ', selectedNote);
@@ -20,7 +21,7 @@ export class AppContainer extends React.Component {
 		return (
 			<div className="main-container">
 				<NotesTopBar onNewNote={props.newNote} />
-				<NotesListView notes={notes} selectedNote={selectedNote} onSelectNote={props.selectNote}/>
+				<NotesListView notes={notes} selectedNoteIndex={selectedNoteIndex} onSelectNote={props.selectNote}/>
 				<NoteView note={selectedNote} />
 			</div>
 		);

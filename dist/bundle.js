@@ -23360,7 +23360,8 @@
 				var props = _objectWithoutProperties(_props, ['appState']);
 
 				var notes = appState.notes;
-				var selectedNote = notes[appState.selectedNoteIndex];
+				var selectedNoteIndex = appState.selectedNoteIndex;
+				var selectedNote = notes[selectedNoteIndex];
 
 				console.log('appState is ', appState);
 				console.log('selectedNote is ', selectedNote);
@@ -23369,7 +23370,7 @@
 					'div',
 					{ className: 'main-container' },
 					_react2.default.createElement(_NotesTopBar2.default, { onNewNote: props.newNote }),
-					_react2.default.createElement(_NotesListView2.default, { notes: notes, selectedNote: selectedNote, onSelectNote: props.selectNote }),
+					_react2.default.createElement(_NotesListView2.default, { notes: notes, selectedNoteIndex: selectedNoteIndex, onSelectNote: props.selectNote }),
 					_react2.default.createElement(_NoteView2.default, { note: selectedNote })
 				);
 			}
@@ -23399,7 +23400,7 @@
 /* 206 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 		value: true
@@ -23429,34 +23430,38 @@
 		}
 
 		_createClass(NotesListView, [{
-			key: "render",
+			key: 'render',
 			value: function render() {
 				var _props = this.props;
 				var notes = _props.notes;
+				var selectedNoteIndex = _props.selectedNoteIndex;
 				var onNewNote = _props.onNewNote;
 				var onSelectNote = _props.onSelectNote;
 
 
 				return _react2.default.createElement(
-					"ul",
-					{ className: "notes-list-view" },
+					'ul',
+					{ className: 'notes-list-view' },
 					notes.map(function (note, index) {
+						var isSelected = index === selectedNoteIndex;
+						var className = 'notes-list-item' + (isSelected ? ' notes-list-item--selected' : '');
+
 						return _react2.default.createElement(
-							"li",
-							{ className: "notes-list-item", key: index, onClick: function onClick() {
+							'li',
+							{ className: className, key: index, onClick: function onClick() {
 									return onSelectNote(index);
 								} },
 							_react2.default.createElement(
-								"h3",
+								'h3',
 								null,
 								note.title
 							),
 							_react2.default.createElement(
-								"small",
+								'small',
 								null,
 								note.content
 							),
-							" "
+							' '
 						);
 					})
 				);

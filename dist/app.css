@@ -26,6 +26,12 @@ ul {
 .notes-list-item {
 	border-bottom: 1px solid grey;
 	padding: 20px;
+	cursor: default;
+}
+
+.notes-list-item--selected {
+	background: #2196F3;
+	color: white;
 }
 
 .notes-list-item h3 {
