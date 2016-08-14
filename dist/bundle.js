@@ -23254,8 +23254,7 @@
 						}])
 					});
 
-					var newStateNotes = newState.notes;
-					newState.selectedNoteIndex = newStateNotes[newStateNotes.length - 1];
+					newState.selectedNoteIndex = newState.notes.length - 1;
 
 					return newState;
 				}
