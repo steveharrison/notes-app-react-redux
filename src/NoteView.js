@@ -16,8 +16,8 @@ export default class NoteView extends React.Component {
 		return (
 			<div className="note-view">
 				<h1>{note.title}</h1>
-				<small>Date updated: {note.dateUpdated}</small>
-				<small>Date created: {note.dateCreated}</small>
+				<small>Date updated: {note.dateUpdated.toString()}</small>
+				<small>Date created: {note.dateCreated.toString()}</small>
 				<small>Starred: {note.starred ? 'Yes' : 'No'}</small>
 				<p>{note.content}</p>
 			</div>

@@ -5,11 +5,11 @@ import NotesListView from './NotesListView';
 import NotesTopBar from './NotesTopBar';
 import NoteView from './NoteView';
 
-import { newNote } from './actions'
+import { newNote, selectNote } from './actions'
 
 export class AppContainer extends React.Component {
 	render() {
-		const { appState, newNote } = this.props;
+		const { appState, ...props } = this.props;
 		
 		const notes = appState.notes;
 		const selectedNote = notes[appState.selectedNoteIndex];
@@ -19,8 +19,8 @@ export class AppContainer extends React.Component {
 		
 		return (
 			<div className="main-container">
-				<NotesTopBar onNewNote={newNote} />
-				<NotesListView notes={notes} selectedNote={selectedNote} />
+				<NotesTopBar onNewNote={props.newNote} />
+				<NotesListView notes={notes} selectedNote={selectedNote} onSelectNote={props.selectNote}/>
 				<NoteView note={selectedNote} />
 			</div>
 		);
@@ -35,7 +35,8 @@ const WrappedAppContainer = connect(
   },
   function mapDispatchToProps(dispatch) {
   	return {
-  		newNote: () => dispatch(newNote())
+  		newNote: () => dispatch(newNote()),
+  		selectNote: (index) => dispatch(selectNote(index))
   	};
   }
 )(AppContainer);

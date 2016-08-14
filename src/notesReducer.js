@@ -1,4 +1,4 @@
-import { NEW_NOTE } from './actions';
+import { NEW_NOTE, SELECT_NOTE } from './actions';
 
 const initialState = {
 	selectedNoteIndex: null,
@@ -26,6 +26,13 @@ export default function notesReducer(state = initialState, action) {
 			newState.selectedNoteIndex = newStateNotes[newStateNotes.length - 1];
 
 			return newState;
+		}
+
+		case SELECT_NOTE: {
+			return {
+				...state,
+				selectedNoteIndex: action.index
+			};
 		}
 
 		default: {

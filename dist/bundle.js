@@ -23260,6 +23260,13 @@
 					return newState;
 				}
 
+			case _actions.SELECT_NOTE:
+				{
+					return _extends({}, state, {
+						selectedNoteIndex: action.index
+					});
+				}
+
 			default:
 				{
 					return state;
@@ -23277,10 +23284,19 @@
 		value: true
 	});
 	exports.newNote = newNote;
+	exports.selectNote = selectNote;
 	var NEW_NOTE = exports.NEW_NOTE = '@@NOTES/NEW_NOTE';
+	var SELECT_NOTE = exports.SELECT_NOTE = '@@NOTES/SELECT_NOTE';
 
 	function newNote() {
 		return { type: NEW_NOTE };
+	}
+
+	function selectNote(index) {
+		return {
+			type: SELECT_NOTE,
+			index: index
+		};
 	}
 
 /***/ },
@@ -23318,6 +23334,8 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+	function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -23338,8 +23356,8 @@
 			value: function render() {
 				var _props = this.props;
 				var appState = _props.appState;
-				var newNote = _props.newNote;
 
+				var props = _objectWithoutProperties(_props, ['appState']);
 
 				var notes = appState.notes;
 				var selectedNote = notes[appState.selectedNoteIndex];
@@ -23350,8 +23368,8 @@
 				return _react2.default.createElement(
 					'div',
 					{ className: 'main-container' },
-					_react2.default.createElement(_NotesTopBar2.default, { onNewNote: newNote }),
-					_react2.default.createElement(_NotesListView2.default, { notes: notes, selectedNote: selectedNote }),
+					_react2.default.createElement(_NotesTopBar2.default, { onNewNote: props.newNote }),
+					_react2.default.createElement(_NotesListView2.default, { notes: notes, selectedNote: selectedNote, onSelectNote: props.selectNote }),
 					_react2.default.createElement(_NoteView2.default, { note: selectedNote })
 				);
 			}
@@ -23368,6 +23386,9 @@
 		return {
 			newNote: function newNote() {
 				return dispatch((0, _actions.newNote)());
+			},
+			selectNote: function selectNote(index) {
+				return dispatch((0, _actions.selectNote)(index));
 			}
 		};
 	})(AppContainer);
@@ -23413,6 +23434,7 @@
 				var _props = this.props;
 				var notes = _props.notes;
 				var onNewNote = _props.onNewNote;
+				var onSelectNote = _props.onSelectNote;
 
 
 				return _react2.default.createElement(
@@ -23421,7 +23443,9 @@
 					notes.map(function (note, index) {
 						return _react2.default.createElement(
 							"li",
-							{ className: "notes-list-item", key: index },
+							{ className: "notes-list-item", key: index, onClick: function onClick() {
+									return onSelectNote(index);
+								} },
 							_react2.default.createElement(
 								"h3",
 								null,
@@ -23572,13 +23596,13 @@
 						'small',
 						null,
 						'Date updated: ',
-						note.dateUpdated
+						note.dateUpdated.toString()
 					),
 					_react2.default.createElement(
 						'small',
 						null,
 						'Date created: ',
-						note.dateCreated
+						note.dateCreated.toString()
 					),
 					_react2.default.createElement(
 						'small',
