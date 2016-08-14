@@ -13,6 +13,7 @@ ul {
 
 .main-container {
 	padding-top: 50px;
+	display: flex;
 }
 
 .notes-list-view {
@@ -30,6 +31,22 @@ ul {
 .notes-list-item h3 {
 	margin-top: 0;
 }
+
+.note-view {
+	width: 60%;
+	padding: 20px;
+}
+
+.note-view.no-note-selected {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.note-view.no-note-selected small {
+	color: grey;
+}
+
 
 .top-bar {
     width: 100%;

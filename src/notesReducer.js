@@ -1,20 +1,31 @@
 import { NEW_NOTE } from './actions';
 
-const initialState = [];
+const initialState = {
+	selectedNoteIndex: null,
+	notes: []
+};
 
 export default function notesReducer(state = initialState, action) {
 	switch(action.type) {
 		case NEW_NOTE: {
-			return [
+			const newState = {
 				...state,
-				{
-					title: 'My note',
-  					content: 'Lorem ipsum **dolor** sit amet, consectetur adipisicing elit. Nam excepturi, rerum maiores aliquam voluptatibus. Sunt ullam, in alias, minus omnis quis obcaecati, similique eum quibusdam excepturi quisquam fugit hic, maxime.',
-  					starred: false,
-  					dateCreated: new Date(),
-  					dateUpdated: new Date()
-				}
-			];
+				notes: [
+					...state.notes,
+					{
+						title: 'My note',
+	  					content: 'Lorem ipsum **dolor** sit amet, consectetur adipisicing elit. Nam excepturi, rerum maiores aliquam voluptatibus. Sunt ullam, in alias, minus omnis quis obcaecati, similique eum quibusdam excepturi quisquam fugit hic, maxime.',
+	  					starred: false,
+	  					dateCreated: new Date(),
+	  					dateUpdated: new Date()
+					}
+				]
+			};
+
+			const newStateNotes = newState.notes;
+			newState.selectedNoteIndex = newStateNotes[newStateNotes.length - 1];
+
+			return newState;
 		}
 
 		default: {
