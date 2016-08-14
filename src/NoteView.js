@@ -1,5 +1,6 @@
 import React from 'react';
 import moment from 'moment';
+import NoteContentEditor from './NoteContentEditor';
 
 export default class NoteView extends React.Component {
 	render() {
@@ -24,6 +25,7 @@ export default class NoteView extends React.Component {
 				<small title={dateUpdated.format('dddd, Do MMMM YYYY, h:mm:ss a')}>Date updated: {dateUpdated.calendar()}</small>
 				<small>Starred: {note.starred ? 'Yes' : 'No'}</small>
 				<p>{note.content}</p>
+				<NoteContentEditor />
 			</div>
 		);
 	}

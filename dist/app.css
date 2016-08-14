@@ -60,6 +60,10 @@ ul {
 	color: grey;
 }
 
+.DraftEditor-root {
+	border: 1px solid gainsboro;
+}
+
 
 
 .top-bar {
