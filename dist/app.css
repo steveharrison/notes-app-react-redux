@@ -49,9 +49,17 @@ ul {
 	justify-content: center;
 }
 
+.note-view small {
+	color: grey;
+	display: block;
+	margin-bottom: 10px;
+}
+
+
 .note-view.no-note-selected small {
 	color: grey;
 }
+
 
 
 .top-bar {
