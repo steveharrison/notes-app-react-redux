@@ -1,6 +1,6 @@
 
 body {
-	font-family: Courier;
+	font-family: Avenir;
 	margin: 0;
 	padding: 0;
 }
@@ -12,7 +12,7 @@ ul {
 }
 
 .main-container {
-	padding-top: 50px;
+	padding-top: 60px;
 	display: flex;
 }
 
@@ -30,8 +30,9 @@ ul {
 }
 
 .notes-list-item--selected {
-	background: #2196F3;
-	color: white;
+	background: #dcf0ff;
+	color: black;
+	/*font-weight: bold;*/
 }
 
 .notes-list-item h3 {
@@ -69,8 +70,28 @@ ul {
 .top-bar {
     width: 100%;
     padding: 5px;
-    height: 50px;
-    background: #b1b1b1;
+    height: 60px;
+    background: #F44336;
     position: fixed;
     top: 0;
+    background: linear-gradient(to top, #f44336 0%,#ff5a40 100%);
+    border-bottom: 2px solid #cc200a;
+}
+
+.top-bar button {
+	background: #f44336;
+    background: -moz-linear-gradient(top, #f44336 0%, #ff583a 100%);
+    background: -webkit-linear-gradient(top, #f44336 0%,#ff583a 100%);
+    background: linear-gradient(to top, #f44336 0%,#ff5a40 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f44336', endColorstr='#ff583a',GradientType=0 );
+    /* background: #f44336; */
+    border: 0;
+    color: white;
+    border: 1px solid #d22114;
+    margin: 10px;
+    padding: 10px;
+    font-family: Avenir;
+    font-size: 13px;
+    border-radius: 4px;
+    box-shadow: inset 0px 1px #ff928a, 0px 1px 0px #ff796f;
 }
